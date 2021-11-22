@@ -10,6 +10,12 @@ use App\Http\Validation\PictureValidation;
 
 class PictureController extends Controller
 {
+
+    public function index(){
+       $pictures = Picture::all();
+       return response() ->json($pictures);
+    }
+
     public function store(Request $request, PictureValidation $validation) {
         return response()->json(Auth::user());
         $validator = Validator::make($request->all(), $validation->rules(), $validation->messages());
