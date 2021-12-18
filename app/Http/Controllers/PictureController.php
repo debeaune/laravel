@@ -13,11 +13,18 @@ class PictureController extends Controller
 
     public function index(){
        $pictures = Picture::all();
-       return response() ->json($pictures);
+       return response()->json($pictures);
+    }
+
+    public function show($id) {
+        $picture = Picture::find($id);
+        if(!$picture){
+            return response()->json(['message' =>'Resource not found'],403);
+        }
+        return response()->json($picture);
     }
 
     public function store(Request $request, PictureValidation $validation) {
-        return response()->json(Auth::user());
         $validator = Validator::make($request->all(), $validation->rules(), $validation->messages());
         
         if($validator->fails()) {
