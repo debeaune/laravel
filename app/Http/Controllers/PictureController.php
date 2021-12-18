@@ -11,8 +11,14 @@ use App\Http\Validation\PictureValidation;
 class PictureController extends Controller
 {
 
-    public function index(){
-       $pictures = Picture::all();
+    public function search(Request $request){
+       $param= $request->input('search');
+       if($param){
+           $pictures = Picture::where('title','like','%' . $param . '%')->get(); 
+       }
+       else{
+           $pictures= Picture::all();
+       }
        return response()->json($pictures);
     }
 
