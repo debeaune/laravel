@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/auth/redirect/{provider}',[GoogleController::class,'redirect']);
+Route::get('/callback/{provider}',[GoogleController::class,'callback']);
 
 Route::get('/', function () {
     return view('welcome');

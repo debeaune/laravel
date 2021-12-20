@@ -20,7 +20,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'api_token'
+        'api_token',
+        'provider',
+        'provider_id'
     ];
 
     /**
